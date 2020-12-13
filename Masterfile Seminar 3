@@ -67,11 +67,24 @@ abline(lm(Gov$bti_ci ~ Gov$bci_bci,
 #Summary stats for our indicators for our models
 
 
-
 ##OUR MODELS##
 
 m1 <- lm(Gov$bti_ci ~ Gov$bci_bci,
                  data = Gov)
 
+##MULTIVARIATE REGRESSION, Mojojojo
+#REGRESSION EQUATION...Don't get what is happening when I try to plot this...
+RG<-lm(Gov$bti_ci~Gov$bci_bci)
+summary(RG)
+
+##Multivariate regression with the controls of frac (fe_etfra), State Fragility (cspf_sfi), Government Effectiveness (wbgi_gee), and Regime Type (ht_regtype1)
+#Conflict intensity as a function of corruption
+m1<-lm(Gov$bti_ci~Gov$bci_bci,data = Gov)
+#Conflict intensity as a function of both ethnic fractionalization and govt effectiveness controls
+m2<-lm(Gov$bti_ci~Gov$bci_bci+Gov$fe_etfra+Gov$wbgi_gee,data = Gov)
+#Conflict intensity as a function of corruption, ethnic frac, govt effectiveness and fragility
+m3<-lm(Gov$bti_ci~Gov$bci_bci+Gov$fe_etfra+Gov$wbgi_gee+Gov$cspf_sfi,data = Gov)
+#Conflict intensity as a function of corruption, ethnic frac, govt effectiveness, fragility and regime type
+m4<-lm(Gov$bti_ci~Gov$bci_bci+Gov$fe_etfra+Gov$wbgi_gee+Gov$cspf_sfi+Gov$ht_regtype,data = Gov)
 
 ##ROBUSTNESS TESTS##
